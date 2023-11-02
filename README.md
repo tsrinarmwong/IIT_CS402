@@ -20,8 +20,14 @@ The code are commented and organized. I also include the log file to reference t
 ### Limitations
 _1-Database can only contain 1024 employees._
 
-2-Database can only contain ID upto 999999. If an attempt to add employee is made when the highest ID is 999999, it will return error.
+_2-Database can only contain ID upto 999999. If an attempt to add employee is made when the highest ID is 999999, it will return error._
 
-3-Printing combines first name and last name and separate them with a space. This is to reflect the requirement from instruction.
+_3-Printing combines first name and last name and separate them with a space. This is to reflect the requirement from instruction._
+
+_4-Using scanf() may risk buffer overflow from user input... please don't do that._
+
+### Early (Top-down) Design
+Here's the early design I skecthed. I designed to write specific functions in specific files. That way I can maintain modularity and is readable.
+![workerDB overall design](https://github.com/tsrinarmwong/IIT_CS402/assets/125150205/e461810f-1d9e-4460-9439-d6a2ea64814c)
 
 THANK YOU! XD
