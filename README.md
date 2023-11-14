@@ -12,6 +12,9 @@ This assignment extends the previous database I have written. I implemented chan
 Changes are only in database.c and main.c where the database features and menu handling is writen.
 The fucntion should be self-explanatory and I also have comments explaining how the code works.
 
+Here's some pseudo drawing about how to remove employees and mainting array. I modified a but more in the actual code but the concept kinda derive from this.
+![IMG_3CEE7C690AA2-1](https://github.com/tsrinarmwong/IIT_CS402/assets/125150205/5b37ebaf-bac8-4f7f-9073-ccd1f98ca336)
+
 ## SP LAB 01 employee database in C
 Hello! My name is Thitipun Srinarmwong A20501320.
 The code is for the assignment SP-Lab-1 for IIT course CS402 semester FALL2023.
