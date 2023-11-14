@@ -1,3 +1,4 @@
+//THITIPUN SRINARMWONG A20501320
 #ifndef DATABASE_H
 #define DATABASE_H
 
@@ -8,5 +9,9 @@ void lookupByLastName();
 void addEmployee();
 void sortEmployeesByLastName();
 void quitProgram();
+void removeEmployee();
+void updateEmployee();
+void printMEmployeeTopSalaries();
+void lookupAllByLastName();
 
 #endif

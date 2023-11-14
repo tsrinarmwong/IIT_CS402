@@ -1,3 +1,4 @@
+//THITIPUN SRINARMWONG A20501320
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -7,7 +8,6 @@
 
 void displayMenu();
 void handleUserSelection(int choice);
-void quitProgram();
 
 int main(int argc, char *argv[]) {
     if (argc != 2) {
@@ -41,6 +41,11 @@ void displayMenu() {
     printf("3. Lookup employee by last name\n");
     printf("4. Add an Employee\n");
     printf("5. Quit\n");
+    //SPLab-2
+    printf("6. Remove employee by ID\n");
+    printf("7. Update employee by ID\n");
+    printf("8. Print M employees with highest salary\n");
+    printf("9. Lookup all employees by last name\n");
     printf("Enter your choice: ");
 }
 
@@ -60,6 +65,18 @@ void handleUserSelection(int choice) {
             break;
         case 5:
             quitProgram();
+            break;
+        case 6: 
+            removeEmployee();
+            break;
+        case 7:
+            updateEmployee();
+            break;
+        case 8:
+            printMEmployeeTopSalaries();
+            break;
+        case 9:
+            lookupAllByLastName();
             break;
         default:
             printf("%d is invalid. Please try again.\n", choice);
