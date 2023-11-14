@@ -228,6 +228,7 @@ void quitProgram() {
     exit(0);
 }
 void removeEmployee() {
+    // Check if the database is empty
     if (employeeCount == 0) {
         printf("The database is empty. No employees to remove.\n");
         return;
@@ -251,7 +252,7 @@ void removeEmployee() {
     if (index != -1) {
         char confirm;
         printf("Are you sure you want to remove %s %s? (y) for Yes, (n) for No: ", database[index].first_name, database[index].last_name);
-        scanf(" %s", &confirm); // Note the space before %c to skip any whitespace characters
+        scanf(" %s", &confirm);
 
         if (confirm == 'y' || confirm == 'Y') {
             // Shift all elements to the left to fill the hole, if not the last element
@@ -260,7 +261,7 @@ void removeEmployee() {
                     database[i] = database[i + 1];
                 }
             }
-            employeeCount--; // Decrement the count to reflect the removal
+            employeeCount--;
             printf("Employee removed successfully.\n");
         } else if (confirm == 'n' || confirm == 'N') {
             printf("Employee removal cancelled.\n");
@@ -352,6 +353,7 @@ void updateEmployee() {
     }
 }
 void printMEmployeeTopSalaries() {
+    // Check if the database is empty
     if (employeeCount == 0) {
         printf("The database is empty. No salaries to display.\n");
         return;
@@ -374,7 +376,7 @@ void printMEmployeeTopSalaries() {
         topSalary[i].salary = 0;
     }
 
-    // Iterate through the database to find the top M salaries
+    // Only one pass through database to fetch employee with highest salary
     for (int i = 0; i < employeeCount; ++i) {
         for (int j = 0; j < M; ++j) {
             if (database[i].salary > topSalary[j].salary) {
@@ -386,7 +388,7 @@ void printMEmployeeTopSalaries() {
                 break; // No need to continue checking the rest of topSalary
             }
         }
-    }
+    }   // Remain sorted by ID
 
     // Printing the top M salaries, which are now in descending order
     printf("Top %d Salaries:\n", M);
