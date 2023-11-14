@@ -1,4 +1,17 @@
 # IIT_CS402
+## SP LAB 02 extension of employee database in C
+Hello! My name is Thitipun Srinarmwong A20501320.
+
+This assignment extends the previous database I have written. I implemented changes according to the instructions
+
+     1 - Remove Employee
+     2 - Update Employee
+     3 - Look up M employee(s) with top salaries 
+     4 - Look up all employee(s) by last name
+
+Changes are only in database.c and main.c where the database features and menu handling is writen.
+The fucntion should be self-explanatory and I also have comments explaining how the code works.
+
 ## SP LAB 01 employee database in C
 Hello! My name is Thitipun Srinarmwong A20501320.
 The code is for the assignment SP-Lab-1 for IIT course CS402 semester FALL2023.
