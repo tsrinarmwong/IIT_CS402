@@ -176,20 +176,15 @@ Mode* calculate_modes(float *data, int count, int* mode_count) {
         }
     }
 
-    // Allocate modes array if not already allocated and only one mode was found
-    if (maxCount == 1 && modes == NULL) {
-        modes = malloc(count * sizeof(Mode));
-        if (modes == NULL) {
-            *mode_count = 0;
-            return NULL;
-        }
-        for (int i = 0; i < count; ++i) {
-            modes[i] = (Mode){data[i], 1};
-        }
+    if (maxCount == 1) {
+        // All numbers are unique, return NULL to let printer handle
         *mode_count = count;
-    } else if (modes == NULL) {
-        // No mode found
-        *mode_count = 0;
+        return NULL;
+    }
+
+    // every number are mode, return NULL to let printer handle
+    if (modes == NULL) {
+        *mode_count = count;
     }
 
     return modes;
