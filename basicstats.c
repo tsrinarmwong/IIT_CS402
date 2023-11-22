@@ -15,9 +15,9 @@ float calculate_geometric_mean(const float *data, int count);
 float calculate_harmonic_mean(const float *data, int count);
 float calculate_median(float *data, int count);
 float calculate_stddev(const float *data, int count, float mean);
-float custom_sqrt(float number);
+float custom_sqrt(float number); 
 float custom_pow(float base, int exponent);
-float nth_root(float product, int n);
+float nth_root(float product, int n); //for geometric
 void copy_array(float *dest, const float *src, int count);
 void print_mode(const Mode* modes, int mode_count, int total_count);
 
@@ -136,68 +136,87 @@ float calculate_mean(const float *data, int count) {
     return sum / count;
 }
 
+int compare_floats(const void *a, const void *b) {
+    float fa = *(const float*)a;
+    float fb = *(const float*)b;
+    return (fa > fb) - (fa < fb);
+}
+
 Mode* calculate_modes(float *data, int count, int* mode_count) {
-    // Temporary array to hold modes
-    Mode* modes = malloc(count * sizeof(Mode));
-    if (modes == NULL) {
-        *mode_count = 0;
-        return NULL; // Handle memory allocation failure
-    }
+
+    qsort(data, count, sizeof(float), compare_floats); // Sort the array first
 
     int maxCount = 1;
     int currentCount = 1;
-    int numModes = 0;
-    bool allUnique = true; // Flag to check if all numbers are unique
+    Mode* modes = NULL; // Delayed allocation to save space
 
     for (int i = 1; i < count; ++i) {
         if (data[i] == data[i - 1]) {
             currentCount++;
-            allUnique = false; // Found a duplicate
-        } else {
             if (currentCount > maxCount) {
                 maxCount = currentCount;
-                numModes = 0; // Reset the number of modes found
-                modes[numModes++] = (Mode){data[i - 1], currentCount};
+                if (modes == NULL) {
+                    modes = malloc(count * sizeof(Mode));
+                    if (modes == NULL) {
+                        *mode_count = 0;
+                        return NULL; // Memory allocation failure
+                    }
+                }
+                *mode_count = 1;
+                modes[0] = (Mode){data[i], currentCount};
             } else if (currentCount == maxCount) {
-                modes[numModes++] = (Mode){data[i - 1], currentCount}; // Add to modes
+                if (modes != NULL) {
+                    modes[*mode_count].value = data[i];
+                    modes[*mode_count].count = currentCount;
+                    (*mode_count)++;
+                }
             }
+        } else {
             currentCount = 1; // Reset for a new number
         }
     }
 
-    // Check the last element
-    if (currentCount == maxCount) {
-        modes[numModes++] = (Mode){data[count - 1], currentCount};
-    } else if (currentCount > maxCount) {
-        maxCount = currentCount;
-        numModes = 1;
-        modes[0] = (Mode){data[count - 1], currentCount};
+    // Allocate modes array if not already allocated and only one mode was found
+    if (maxCount == 1 && modes == NULL) {
+        modes = malloc(count * sizeof(Mode));
+        if (modes == NULL) {
+            *mode_count = 0;
+            return NULL;
+        }
+        for (int i = 0; i < count; ++i) {
+            modes[i] = (Mode){data[i], 1};
+        }
+        *mode_count = count;
+    } else if (modes == NULL) {
+        // No mode found
+        *mode_count = 0;
     }
 
-    *mode_count = allUnique ? count : numModes;
     return modes;
 }
 
 void print_mode(const Mode* modes, int mode_count, int total_count) {
     printf("Mode:\t\t ");
     if (mode_count == total_count) {
+        // If mode_count is equal to total_count, all numbers are unique and are considered modes
         printf("All numbers appear once; Hence, all numbers are mode.\n");
     } else if (mode_count > 0) {
+        // Print the identified modes
         for (int i = 0; i < mode_count; ++i) {
             printf("%.3f", modes[i].value);
             if (i < mode_count - 1) { // If not the last mode, print a separator
                 printf(", ");
             }
-            if ((i + 1) % 5 == 0 && i < mode_count - 1) { // Maintain Alignment
+            if ((i + 1) % 5 == 0 && i < mode_count - 1) { // Maintain alignment
                 printf("\n\t\t ");
             }
         }
         printf("\n");
     } else {
-        printf("None\n"); // No distinct mode found
+        // If mode_count is 0, no distinct mode is found
+        printf("None\n");
     }
 }
-
 
 float nth_root(float product, int n) {
     if (n <= 0 || product <= 0) {
