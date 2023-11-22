@@ -32,8 +32,8 @@ The code are commented and organized. I also include the log file to reference t
   
   negative value will result in certain functions skipped since it is mathematically invalid.
   
-  If the loaded file exceed 500 and all has unique number, meaning every number is mode. 
-  The program would take significant longeer time to process. This performance is according to my local computer Mac M1 16 GB ram.
+  If the loaded file exceed 1000 and all has unique number, meaning every number is mode. 
+  The program would take exponentially longer time to process. This performance is according to my local computer Mac M1 16 GB ram.
   
 ## Reference
 
