@@ -18,8 +18,11 @@ This program take the set of values and print outthe
 
 **And to run the program, please input the text file that contains the data after the executable**
   `./basicstats small.txt`
+  
   `./basicstats large.txt`
+  
   `./basicstats Big.txt`
+  
   `./basicstats really_big.txt`
 
 The code are commented and organized. I also include the log file to reference the program behaviour.
