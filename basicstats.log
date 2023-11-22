@@ -1,0 +1,47 @@
+% gcc basicstats.c -o basicstats
+% ./basicstats small.txt 
+Results:
+--------
+Num values:	 13
+Mean:		 79.885
+Mode:		 9.187
+Geometric Mean:	 33.943
+Harmonic Mean:	 3.782
+Median:		 63.132
+Stddev:		 89.201
+Unused array capacity:	 7
+% ./basicstats large.txt 
+Results:
+--------
+Num values:	 30
+Mean:		 2035.600
+Mode:		 All numbers appear once; Hence, all numbers are mode.
+Geometric Mean:	 1282.635
+Harmonic Mean:	 463.445
+Median:		 1956.000
+Stddev:		 1496.153
+Unused array capacity:	 10
+% ./basicstats Big.txt 
+*!!! Negative value detected. !!!*
+Geometric and Harmony Mean calculation will be skipped.
+Results:
+--------
+Num values:	 500
+Mean:		 516.866
+Mode:		 All numbers appear once; Hence, all numbers are mode.
+Geometric Mean:	 INVALID
+Harmonic Mean:	 INVALID
+Median:		 538.049
+Stddev:		 299.010
+Unused array capacity:	 140
+% ./basicstats really_big.txt 
+Results:
+--------
+Num values:	 1003
+Mean:		 515.477
+Mode:		 523.239, 107.333, 247.041
+Geometric Mean:	 385.385
+Harmonic Mean:	 154.181
+Median:		 526.422
+Stddev:		 294.113
+Unused array capacity:	 277
